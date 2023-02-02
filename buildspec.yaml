@@ -2,7 +2,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      golang: 1.x
+      golang: 1.18
   pre_build:
     commands:
       - echo Excecuting pre_build
@@ -14,8 +14,8 @@ phases:
   build:
     commands:
       - docker build --platform linux/amd64 -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag $REPOSITORY_URI:latest $$REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-      -  docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
