@@ -19,7 +19,7 @@ func main() {
 }
 func Greetings(c echo.Context) error {
 	return c.JSON(http.StatusOK, HelloWorld{
-		Message: "Hello World",
+		Message: "Hello Worldsss",
 	})
 }
 
