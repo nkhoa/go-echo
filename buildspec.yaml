@@ -5,14 +5,20 @@ phases:
       - echo Excecuting pre_build
       - aws --version
       - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 058875729649.dkr.ecr.ap-southeast-1.amazonaws.com
+      - echo Aws login success
       - REPOSITORY_URI=058875729649.dkr.ecr.ap-southeast-1.amazonaws.com/go-echo
+      - echo repo init
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo pre build done
   build:
     commands:
       - docker build -t $REPOSITORY_URI:latest .
+      - echo docker build done
       - docker tag $REPOSITORY_URI:latest $$REPOSITORY_URI:$IMAGE_TAG
+      - echo build done
   post_build:
     commands:
       - docker push $REPOSITORY_URI:latest
+      - echo docker push done
       - docker push $REPOSITORY_URI:$IMAGE_TAG
