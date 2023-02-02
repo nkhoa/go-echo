@@ -6,7 +6,7 @@ phases:
       golang: 1.x
   pre_build:
     commands:
-      - go get
+      - echo Excecuting pre_build
   build:
     commands:
       - echo Excecuting build
