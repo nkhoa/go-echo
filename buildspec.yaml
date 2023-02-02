@@ -18,8 +18,7 @@ phases:
   post_build:
     commands:
       - docker push $REPOSITORY_URI:latest
-      - printf '[{"name":"go-echo","imgaeUri":"%s"}]' 
-        $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"go-echo","imgaeUri":"%s"}]' > $REPOSITORY_URI:latest > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:
