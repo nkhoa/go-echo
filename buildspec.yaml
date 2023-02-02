@@ -10,7 +10,7 @@ phases:
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
-      - docker build --platform linux/amd64 -t $REPOSITORY_URI:latest .
+      - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $$REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
