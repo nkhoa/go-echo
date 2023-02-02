@@ -17,7 +17,6 @@ func main() {
 	e.GET("/hello-queries", GreetingsWithQuery)
 	e.Logger.Fatal(e.Start(":3000"))
 }
-
 func Greetings(c echo.Context) error {
 	return c.JSON(http.StatusOK, HelloWorld{
 		Message: "Hello World",
