@@ -15,10 +15,6 @@ phases:
     commands:
       - docker build -t $REPOSITORY_URI:latest .
       - echo docker build done
-      - docker tag $REPOSITORY_URI:latest $$REPOSITORY_URI:$IMAGE_TAG
-      - echo build done
   post_build:
     commands:
       - docker push $REPOSITORY_URI:latest
-      - echo docker push done
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
